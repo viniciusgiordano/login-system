@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/public/assets/styles.css" rel="stylesheet" type="text/css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form">
+        <h1 class="form__title">Users</h1>
+        <p class="form__text">Welcome <%= user.name %></p>
+
+        <ul></ul>
+        <script>
+          const ul = document.querySelector('ul')
+          const getUsers = async () => {
+            const res = await fetch('../config/auth.js')
+            const data = await res.json()
+            data.user.map(mappedUser => {
+              let li = `<li> <b>Username</b> => ${mappedUser.name} <br> <b>Role</b> => ${mappedUser.email} <br> <b>Role</b> => ${mappedUser.date} </li>`
+              ul.innerHTML += li
+            })
+          }
+          getUsers()
+        </script>
+
+        <p class="form__text">
+          <a class="form__link" href="/users/logout">Logout</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
